@@ -9,13 +9,13 @@ namespace DNSBL;
 class DNSBL
 {
     /**
-     * Array of blacklists.
+     * Array of blocklists.
      *
      * Must have one or more elements.
      *
      * @var list<string>
      */
-    protected $blacklists = [];
+    protected $blocklists = [];
 
     /** @var ?string */
     protected $dumpFile = null;
@@ -65,14 +65,22 @@ class DNSBL
     }
 
     /**
-     * Set the blacklist to a desired blacklist.
+     * Set the blocklist to a desired blocklist.
      *
-     * @param list<string> $blacklists Array of blacklists to use.
+     * @param list<string> $blocklists Array of blocklists to use.
+     */
+    public function setBlocklists(array $blocklists): bool
+    {
+        $this->blocklists = $blocklists;
+        return true;
+    }
+
+    /**
+     * @deprecated 0.2.0 Use setBlocklists() instead
      */
     public function setBlacklists(array $blacklists): bool
     {
-        $this->blacklists = $blacklists;
-        return true;
+        return $this->setBlocklists($blacklists);
     }
 
     /**
